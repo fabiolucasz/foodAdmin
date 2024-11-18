@@ -12,7 +12,7 @@ export default function Login() {
   const router = useRouter();
 
   function handleLogin() {
-    if (!userMail || !userPass) {
+    /* if (!userMail || !userPass) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
@@ -24,7 +24,8 @@ export default function Login() {
       })
       .catch((error) => {
         alert(error.message);
-      });
+      }); */
+      router.replace('/dashboard');
   }
 
   return (
@@ -57,12 +58,7 @@ export default function Login() {
         >
           <Text style={styles.subTextButton}>Esqueci minha senha</Text>
         </Pressable>
-        <Pressable
-          style={styles.subButton}
-          onPress={() => router.push('/login/newUser')}
-        >
-          <Text style={styles.subTextButton}>Novo usuário</Text>
-        </Pressable>
+        
       </View>
       <StatusBar style="auto" />
     </View>

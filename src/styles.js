@@ -98,6 +98,24 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
 
+    },
+
+    cardButtonDelete: {
+        backgroundColor: 'red',
+        color: 'white',
+        width: '45%',
+        bottom: '1%',
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    cardButtonEdit: {
+        backgroundColor: 'blueviolet',
+        color: 'white',
+        width: '45%',
+        bottom: '1%',
+        borderRadius: 10,
+        alignItems: 'center',
+
 
     },
     titleCard: {

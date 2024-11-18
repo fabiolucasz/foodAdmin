@@ -11,14 +11,14 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const router = useRouter();
   const currentUser = auth.currentUser;
-  
-  if (currentUser !== null){
-    
-  } else{
+
+  /* if (currentUser !== null) {
+
+  } else {
     alert('É necessário estar logado');
     router.replace('/');
   };
-
+ */
   useEffect(() => {
     getProducts();
   }, []);
@@ -32,28 +32,47 @@ export default function Home() {
     }
   };
 
-  const handleCart = (id) => {
-    router.push(`/dashboard/cart?id=${id}`);
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(`http://192.168.0.4:8000/admin/produtos/${id}/`);
+      alert(`Produto com ID ${id} deletado com sucesso.`);
+      getProducts(); // Atualiza a lista após deletar
+    } catch (error) {
+      console.error("Erro ao deletar produto:", error);
+      alert("Não foi possível deletar o produto.");
+    }
   };
+
+  const handleEdit = (id) => {
+    router.push(`/(tabs)/edit?id=${id}`);
+  };
+
 
 
   return (
     <ScrollView contentContainerStyle={styles.containerCard}>
-      {products.map((product, key) => (
-        <Card key={key} style={styles.card}>
-          <Card.Cover source={{ uri: product.imagem }} />
-          <Card.Content>
-            <Text style={styles.titleCard}>{product.nome}</Text>
-            <Text>{product.descricao}</Text>
-            <Text style={styles.price}>R$ {product.preco.toFixed(2)}</Text>
-          </Card.Content>
-          <Card.Actions>
-            <Button style={styles.cardButton} onPress={() => handleCart(product.id)}>
-              <Ionicons name="cart-sharp" size={32} color={'white'} />
-            </Button>
-          </Card.Actions>
-        </Card>
-      ))}
+      {products.length === 0 ? (
+        <Text style={styles.emptyText}>Nenhum produto encontrado.</Text>
+      ) : (
+        products.map((product, key) => (
+          <Card key={key} style={styles.card}>
+            <Card.Cover source={{ uri: product.imagem }} />
+            <Card.Content>
+              <Text style={styles.titleCard}>{product.nome}</Text>
+              <Text>{product.descricao}</Text>
+              <Text style={styles.price}>R$ {product.preco.toFixed(2)}</Text>
+            </Card.Content>
+            <Card.Actions>
+              <Button style={styles.cardButtonDelete} onPress={() => handleDelete(product.id)}>
+                <Ionicons name="trash" size={20} color={'white'} />
+              </Button>
+              <Button style={styles.cardButtonEdit} onPress={() => handleEdit(product.id)}>
+                <Ionicons name="settings" size={20} color={'white'} />
+              </Button>
+            </Card.Actions>
+          </Card>
+        ))
+      )}
     </ScrollView>
   );
 }
