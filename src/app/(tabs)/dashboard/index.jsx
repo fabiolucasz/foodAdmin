@@ -12,13 +12,13 @@ export default function Home() {
   const router = useRouter();
   const currentUser = auth.currentUser;
 
-  /* if (currentUser !== null) {
+   if (currentUser !== null) {
 
   } else {
     alert('É necessário estar logado');
     router.replace('/');
   };
- */
+ 
   useEffect(() => {
     getProducts();
   }, []);
