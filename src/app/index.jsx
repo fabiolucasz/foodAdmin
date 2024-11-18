@@ -12,7 +12,7 @@ export default function Login() {
   const router = useRouter();
 
   function handleLogin() {
-    /* if (!userMail || !userPass) {
+     if (!userMail || !userPass) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
@@ -24,8 +24,7 @@ export default function Login() {
       })
       .catch((error) => {
         alert(error.message);
-      }); */
-      router.replace('/dashboard');
+      }); 
   }
 
   return (
