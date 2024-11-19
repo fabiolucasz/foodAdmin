@@ -17,14 +17,14 @@ export default function AddProduct() {
     });
 
     const handleSave = async () => {
-        // Validação dos campos obrigatórios
+
         if (!product.nome || !product.preco || !product.categoria) {
             Alert.alert("Erro", "Por favor, preencha os campos obrigatórios: Nome, Preço e Categoria.");
             return;
         }
 
         try {
-            // Converte os valores para os tipos esperados pela API
+
             const payload = {
                 nome: product.nome.trim(),
                 preco: parseFloat(product.preco),
@@ -42,6 +42,7 @@ export default function AddProduct() {
 
             Alert.alert("Sucesso", "Produto adicionado com sucesso!");
             router.push("/dashboard");
+
         } catch (error) {
             console.error("Erro ao adicionar produto:", error);
             Alert.alert("Erro", "Não foi possível adicionar o produto.");
