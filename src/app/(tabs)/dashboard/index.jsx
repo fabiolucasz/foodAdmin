@@ -1,27 +1,30 @@
-import { View, Text, Pressable, ScrollView, StyleSheet, Image } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { auth } from "../../../firebase.config";
 import { useRouter } from "expo-router";
 import { Button, Card } from "react-native-paper";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React, { useState } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "../../../styles";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const router = useRouter();
   const currentUser = auth.currentUser;
 
-   if (currentUser !== null) {
+  if (currentUser !== null) {
 
   } else {
     alert('É necessário estar logado');
     router.replace('/');
   };
- 
-  useEffect(() => {
-    getProducts();
-  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getProducts();
+    }, [])
+  );
 
   const getProducts = async () => {
     try {
@@ -36,7 +39,7 @@ export default function Home() {
     try {
       const res = await axios.delete(`http://192.168.0.4:8000/admin/produtos/${id}/`);
       alert(`Produto com ID ${id} deletado com sucesso.`);
-      getProducts(); // Atualiza a lista após deletar
+      getProducts();
     } catch (error) {
       console.error("Erro ao deletar produto:", error);
       alert("Não foi possível deletar o produto.");
