@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import { auth } from "../../../firebase.config";
 import { useRouter } from "expo-router";
 import { Button, Card } from "react-native-paper";
