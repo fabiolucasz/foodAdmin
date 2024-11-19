@@ -6,16 +6,16 @@ import { signOut } from "firebase/auth";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function UserProfile() {
-  const router = useRouter(); // Certifique-se de inicializar o hook aqui
+  const router = useRouter();
 
   function logout() {
     signOut(auth)
       .then(() => {
         alert('Você desconectou-se do sistema.');
-        router.replace('/'); // Redireciona para a página de login
+        router.replace('/');
       })
       .catch((error) => {
-        alert(error.message); // Corrige o acesso à mensagem de erro
+        alert(error.message);
       });
   }
 
