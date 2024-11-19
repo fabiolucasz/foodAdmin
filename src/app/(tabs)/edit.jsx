@@ -5,7 +5,7 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 
 export default function EditProduct() {
     const router = useRouter();
-    const { id } = useLocalSearchParams(); // Obtem o ID do produto pela URL
+    const { id } = useLocalSearchParams();
 
     const [product, setProduct] = useState({
         nome: "",
