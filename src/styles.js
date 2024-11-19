@@ -62,10 +62,11 @@ export const styles = StyleSheet.create({
     internalContainer: {
         flex: 1,
         alignItems: 'flex-start',
-        //paddingTop: 25,
+        paddingTop: 25,
     },
 
     topBar: {
+        marginTop: '50%',
         flexDirection: 'row-reverse',
         padding: 10,
         backgroundColor: 'blueviolet',
